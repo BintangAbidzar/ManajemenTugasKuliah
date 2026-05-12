@@ -36,7 +36,7 @@ $progress_offset = 364 - (364 * $persen_selesai / 100);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Manajemen Tugas Kuliah</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <header class="appbar">
@@ -56,9 +56,37 @@ $progress_offset = 364 - (364 * $persen_selesai / 100);
 
             <div class="top-actions">
                 <span class="material-symbols-outlined">notifications</span>
-                <div class="avatar"><?php echo strtoupper(substr($username, 0, 1)); ?></div>
+                <div class="profile-wrapper">
+                    <div class="avatar" onclick="toggleProfileMenu()"><?php echo strtoupper(substr($username, 0, 1)); ?></div>
+                    <div class="profile-menu" id="profileMenu">
+                        <div class="profile-info">
+                            <div class="profile-avatar"><?php echo strtoupper(substr($username, 0, 1)); ?></div>
+                            <div class="profile-name"><?php echo htmlspecialchars($username); ?></div>
+                        </div>
+                        <div class="profile-divider"></div>
+                        <a href="../auth/logout.php" class="profile-item">
+                            <span class="material-symbols-outlined">logout</span>
+                            Logout
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+    </header>
+
+    <script>
+        function toggleProfileMenu() {
+            const menu = document.getElementById('profileMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            const profileWrapper = document.querySelector('.profile-wrapper');
+            if (!profileWrapper.contains(e.target)) {
+                document.getElementById('profileMenu').classList.remove('active');
+            }
+        });
+    </script>
     </header>
 
     <main class="app-container">
@@ -99,7 +127,13 @@ $progress_offset = 364 - (364 * $persen_selesai / 100);
 
         <div class="detail-grid">
             <section class="content-card">
-                <h3>Deadline Terdekat</h3>
+                <div class="section-title-row">
+                    <h3>Deadline Terdekat</h3>
+                    <a href="../tugas/index.php" class="btn btn-outline">
+                        <span class="material-symbols-outlined">visibility</span>
+                        Lihat Semua
+                    </a>
+                </div>
 
                 <?php if (mysqli_num_rows($query_dekat) > 0) { ?>
                     <div class="task-list-mini">
@@ -131,15 +165,6 @@ $progress_offset = 364 - (364 * $persen_selesai / 100);
             </section>
 
             <aside class="side-stack">
-                <section class="status-panel">
-                    <h3>Status</h3>
-                    <div class="status-row">
-                        <span><?php echo $total_proses; ?> tugas dalam proses</span>
-                        <span class="material-symbols-outlined">radio_button_unchecked</span>
-                    </div>
-                    <a href="../tugas/index.php" class="btn btn-light">Lihat Semua Tugas</a>
-                </section>
-
                 <section class="content-card health-card">
                     <h3>Target</h3>
                     <div class="progress-ring">

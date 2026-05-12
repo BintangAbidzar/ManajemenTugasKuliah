@@ -116,6 +116,81 @@ a {
     color: #ffffff;
     border: 3px solid var(--primary-card);
     font-weight: 700;
+    cursor: pointer;
+}
+
+.profile-wrapper {
+    position: relative;
+}
+
+.profile-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 220px;
+    background-color: var(--surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.profile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profile-info {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: #111827;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.profile-name {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.profile-divider {
+    height: 1px;
+    background-color: var(--border);
+    margin: 0;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    color: var(--red);
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.15s ease;
+}
+
+.profile-item:hover {
+    background-color: var(--red-soft);
+}
+
+.profile-item .material-symbols-outlined {
+    font-size: 20px;
 }
 
 .app-container {
@@ -244,7 +319,7 @@ a {
 
 .detail-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-columns: minmax(0, 1fr) 300px;
     gap: 24px;
     align-items: start;
 }
@@ -252,6 +327,15 @@ a {
 .side-stack {
     display: grid;
     gap: 18px;
+    align-self: stretch;
+}
+
+.side-stack .health-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .content-card {
@@ -327,6 +411,7 @@ a {
 
 .health-card h3 {
     align-self: flex-start;
+    width: 100%;
     color: var(--text);
     text-align: left;
 }
@@ -589,6 +674,15 @@ textarea {
     background-color: var(--red-soft);
     color: var(--red);
     border: 1px solid #f5b5b5;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 14px 0;
+}
+
+.alert-success {
+    background-color: var(--teal-soft);
+    color: var(--teal);
+    border: 1px solid #a8e6cf;
     padding: 12px;
     border-radius: 8px;
     margin: 14px 0;

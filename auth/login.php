@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Manajemen Tugas Kuliah</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=<?php echo time(); ?>">
 </head>
 <body class="login-page">
     <main class="login-shell">
@@ -80,7 +80,7 @@ if (isset($_POST['login'])) {
                 <button type="submit" name="login" class="btn btn-primary">Login</button>
             </form>
 
-            <p class="teks-kecil akun-demo">Demo: admin / admin123</p>
+            <p class="teks-kecil akun-demo">Demo: admin / admin123 | <a href="register.php">Daftar akun baru</a></p>
         </section>
     </main>
 </body>
